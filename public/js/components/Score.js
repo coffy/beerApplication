@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { render } from 'react-dom';
-import FlatButton from 'material-ui/FlatButton';
+import IconButton from 'material-ui/IconButton';
 import DetailScore from './DetailScore';
 import BeerProfileCreate from './BeerProfileCreate'
 
@@ -82,28 +82,32 @@ export default class Score extends React.Component {
                 <td className="beerType">{this.props.type}</td>
                 <td className="brewery">{this.props.brewery}</td>
                 <td className="details">
-                    <FlatButton
-                        primary={true}
+                    <IconButon
+                        tooltipPosition="bottom-center"
+                        tooltip="Check tasting details"
                         onClick={
                             this.handleDetails.bind(this)
-                        }> details
-                    </FlatButton>
+                        }> <i className="material-icons">remove_red_eye</i>
+                    </IconButon>
                 </td>
                 <td className="delete">
-                    <FlatButton
-                        primary={true}
+                    <IconButon
+                        tooltipPosition="bottom-center"
+                        tooltip="Delete tasting"
                         onClick={
                             this.handleRemove.bind(this)
-                     }> remove
-                    </FlatButton>
+                     }> <i className="material-icons">delete</i>
+                    </IconButon>
                 </td>
                 <td className="edit">
-                    <FlatButton
-                        primary={true}
+                    <IconButon
+                        tooltipPosition="bottom-center"
+                        tooltip="Edit tasting"
                         onClick={
                             this.handleEdit.bind(this)
-                    }> edit
-                    </FlatButton>
+                    }>
+                        <i className="material-icons">mode_edit</i>
+                    </IconButon>
                 </td>
             </tr>
         );

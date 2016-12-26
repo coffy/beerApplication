@@ -62,10 +62,27 @@ export default class BeerProfileCreate extends React.Component {
 
         var self = this;
 
+        let json = {
+            beer: this.state.beer,
+            type: this.state.type,
+            brewery: this.state.brewery,
+            overallText: this.state.overallText,
+            aromaText: this.state.aromaText,
+            flavorText: this.state.flavorText,
+            appearanceText: this.state.appearanceText,
+            mouthfeelText: this.state.mouthfeelText,
+            overallValue: this.state.overallValue,
+            aromaValue: this.state.aromaValue,
+            flavorValue: this.state.flavorValue,
+            appearanceValue: this.state.appearanceValue,
+            mouthfeelValue: this.state.mouthfeelValue
+        };
+        
+        
         fetch('/score',{
             method: 'POST',
             mode: 'cors',
-            body: JSON.stringify({})
+            body: JSON.stringify(json)
         })
             .then(function(response) {
 
