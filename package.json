@@ -1,11 +1,10 @@
 {
   "name": "beerapp",
-  "version": "v0.1.0",
-  "description": "Beer app.",
+  "version": "0.0.1",
+  "description": "Tasting beer aplication under BJCP standards",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "watch": "nodemon server.js"
+    "start": "node server.js"
   },
   "author": "GIL",
   "license": "ISC",
