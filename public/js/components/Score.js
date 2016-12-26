@@ -20,7 +20,7 @@ export default class Score extends React.Component {
         fetch('/score:id',{
             method: 'POST',
             mode: 'cors',
-            body: JSON.stringify({})
+            body: {id: this.props._id}
         })
             .then(function(response) {
 
@@ -36,22 +36,41 @@ export default class Score extends React.Component {
 
     handleEdit(){
 
-        var self = this;
+        var beerProfile = render(
+            <BeerProfileCreate
+                id ={this.props._id}
+                beer = {this.props.beer}
+                type = {this.props.type}
+                brewery =  {this.props.type}
+                aromaText = {this.props.aroma.text}
+                flavorText = {this.props.flavor.text}
+                mouthfeelText = {this.props.mouthfeel.text}
+                appearanceText = {this.props.appearance.text}
+                overallText = {this.props.overall.text}
+                aromaValue = {this.props.aroma.value}
+                flavorValue = {this.props.flavor.value}
+                mouthfeelValue = {this.props.mouthfeel.value}
+                appearanceValue = {this.props.appearance.value}
+                overallValue = {this.props.overall.value}
+            />
+            ,document.getElementById('beer-tasting-detail'));
 
-        fetch('/score:id',{
-            method: 'POST',
-            mode: 'cors',
-            body: JSON.stringify({})
-        })
-            .then(function(response) {
+        beerProfile.handleOpenModal();
 
-                return response.json();
-            })
-            .then(function(json){
+    };
 
-                self.setState({ beerList : json});
-            });
 
+    handleDetails(){
+        render(
+            <DetailScore
+                id ={this.props._id}
+                beer = {this.props.beer}
+                aroma = {this.props.aroma}
+                flavor = {this.props.flavor}
+                mouthfeel = {this.props.mouthfeel}
+                appearance = {this.props.appearance}
+            />
+            ,document.getElementById('beer-tasting-detail'));
     };
 
 
@@ -65,17 +84,7 @@ export default class Score extends React.Component {
                     <FlatButton
                         primary={true}
                         onClick={() => {
-                            console.log(this.props._id);
-                            render(
-                                <DetailScore
-                                    id ={this.props._id}
-                                    beer = {this.props.beer}
-                                    aroma = {this.props.aroma}
-                                    flavor = {this.props.flavor}
-                                    mouthfeel = {this.props.mouthfeel}
-                                    appearance = {this.props.appearance}
-                                    />
-                                ,document.getElementById('beer-tasting-detail'));
+                            this.handleDetails.bind(this);
                             }
                         }> details
                     </FlatButton>
@@ -97,8 +106,8 @@ export default class Score extends React.Component {
                         }
                     }> edit
                     </FlatButton>
-          </td>
-      </tr>
-    );
-  }
-                    }
+                </td>
+            </tr>
+        );
+    }
+}

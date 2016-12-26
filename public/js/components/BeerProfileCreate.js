@@ -161,7 +161,7 @@ export default class BeerProfileCreate extends React.Component {
                                     </label>
                                     <textarea
                                         placeholder= 'What is the aroma you feel?'
-                                        //defaultValue="Bob"
+                                        defaultValue={this.props.AromaText}
                                         rows = {3}
                                         ref={(input) => this.input = input} />
                                     <Slider
@@ -182,8 +182,7 @@ export default class BeerProfileCreate extends React.Component {
                                     <textarea
                                         placeholder= 'How does it taste?'
                                         rows = {3}
-                                        //defaultValue="Bob"
-                                        //type="text"
+                                        defaultValue={this.props.flavorText}
                                         ref={(input) => this.input = input} />
                                     <Slider
                                         style={{width: '100%'}}
@@ -222,7 +221,7 @@ export default class BeerProfileCreate extends React.Component {
                                     <textarea
                                         placeholder= 'What does it look like?'
                                         rows = {3}
-                                        //defaultValue="Bob"
+                                        defaultValue={this.props.appearanceText}
                                         ref={(input) => this.input = input} />
                                     <Slider
                                         style={{width: '100%'}}
@@ -240,10 +239,10 @@ export default class BeerProfileCreate extends React.Component {
                                         Overall
                                     </label>
                                     <textarea
-
-                                       //defaultValue="Bob"
-                                       rows = {3}
-                                       ref={(input) => this.input = input} />
+                                        placeholder= 'How do you evaluate it at the end?'
+                                        defaultValue={this.props.overallText}
+                                        rows = {3}
+                                        ref={(input) => this.input = input} />
                                     <Slider
                                         style={{width: '100%'}}
                                         defaultValue={this.props.overallValue}
