@@ -25,26 +25,26 @@ export default class DetailScore extends React.Component {
                         <DetailCard
                             title = 'Flavor'
                             text = {this.props.flavor.text}
-                            value = {this.props.aroma.value}
+                            value = {this.props.flavor.value}
                             maxValue = {20}
                         />
                         <DetailCard
                             title = 'Mouthfeel'
                             text = {this.props.mouthfeel.text}
-                            value = {this.props.aroma.value}
+                            value = {this.props.mouthfeel.value}
                             maxValue = {5}
                         />
                         <DetailCard
                             title = 'Apperance'
                             text = {this.props.appearance.text}
-                            value = {this.props.aroma.value}
+                            value = {this.props.appearance.value}
                             maxValue = {3}
                         />
 
                         <DetailCard
                             title = 'Overall'
-                            text = {this.props.aroma.text}
-                            value = {this.props.aroma.value}
+                            text = {this.props.overall.text}
+                            value = {this.props.overall.value}
                             maxValue = {10}
                         />
                     </div>

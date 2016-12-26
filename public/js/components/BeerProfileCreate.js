@@ -33,6 +33,25 @@ export default class BeerProfileCreate extends React.Component {
     };
 
 
+    componentWillMount(){
+
+        var self = this;
+
+        if(this.props.id){
+
+            this.setState({
+                overallValue: this.props.overallValue,
+                aromaValue: this.props.aromaValue,
+                flavorValue: this.props.flavorValue,
+                appearanceValue: this.props.appearanceValue,
+                mouthfeelValue: this.props.mouthfeelValue
+            })
+        }
+
+
+    };
+
+
 
     handleClose(){
 
@@ -90,6 +109,34 @@ export default class BeerProfileCreate extends React.Component {
         this.setState({appearanceValue: value});
     }
 
+
+
+    handleMouthfeelInputChange(event, value){
+
+        this.setState({mouthfeelText: value});
+    }
+
+    handleFlavorInputChange(event, value){
+
+        this.setState({flavorText: value});
+    }
+
+    handleAromaInputChange(event, value){
+
+        this.setState({aromaText: value});
+    }
+
+    handleAppearanceInputChange(event, value){
+
+        this.setState({appearanceText: value});
+    }
+
+    handleOverallInputChange(event, value){
+
+        this.setState({overallText: value});
+    }
+
+
     render() {
 
         return (
@@ -123,9 +170,9 @@ export default class BeerProfileCreate extends React.Component {
                                             <input
                                                 className = 'beer-desc-input'
                                                 placeholder= "Write the beer&rsquo;s name"
-                                                //defaultValue="Bob"
-                                                type="text"
-                                                ref={(input) => this.input = input} />
+                                                defaultValue={this.props.beer}
+                                                type='text'
+                                            />
                                         </label>
                                     </li>
                                     <li>
@@ -134,9 +181,9 @@ export default class BeerProfileCreate extends React.Component {
                                             <input
                                                 className = 'beer-desc-input'
                                                 placeholder= 'Write the style'
-                                                //defaultValue="Bob"
-                                                type="text"
-                                                ref={(input) => this.input = input} />
+                                                defaultValue={this.props.type}
+                                                type='text'
+                                            />
                                         </label>
                                     </li>
                                     <li>
@@ -145,9 +192,9 @@ export default class BeerProfileCreate extends React.Component {
                                             <input
                                                 placeholder= 'Who made it'
                                                 className = 'beer-desc-input'
-                                                defaultValue="Bob"
-                                                type="text"
-                                                ref={(input) => this.input = input} />
+                                                defaultValue={this.props.brewery}
+                                                type='text'
+                                            />
                                         </label>
                                     </li>
                                 </ul>
@@ -161,9 +208,10 @@ export default class BeerProfileCreate extends React.Component {
                                     </label>
                                     <textarea
                                         placeholder= 'What is the aroma you feel?'
-                                        defaultValue={this.props.AromaText}
+                                        defaultValue={this.props.aromaText}
                                         rows = {3}
-                                        ref={(input) => this.input = input} />
+                                        onChange={this.handleAromaInputChange.bind(this)}
+                                    />
                                     <Slider
                                         style={{width: '100%'}}
                                         defaultValue=  {this.props.aromaValue}
@@ -183,7 +231,8 @@ export default class BeerProfileCreate extends React.Component {
                                         placeholder= 'How does it taste?'
                                         rows = {3}
                                         defaultValue={this.props.flavorText}
-                                        ref={(input) => this.input = input} />
+                                        onChange={this.handleFlavorInputChange.bind(this)}
+                                        />
                                     <Slider
                                         style={{width: '100%'}}
                                         defaultValue={this.props.flavorValue}
@@ -203,7 +252,8 @@ export default class BeerProfileCreate extends React.Component {
                                         placeholder= 'How does it make you feel?'
                                         rows = {3}
                                         defaultValue={this.props.mouthfeelText}
-                                        ref={(input) => this.input = input} />
+                                        onChange={this.handleMouthfeelInputChange.bind(this)}
+                                    />
                                     <Slider
                                         style={{width: '100%'}}
                                         defaultValue={this.props.mouthfeelValue}
@@ -222,7 +272,8 @@ export default class BeerProfileCreate extends React.Component {
                                         placeholder= 'What does it look like?'
                                         rows = {3}
                                         defaultValue={this.props.appearanceText}
-                                        ref={(input) => this.input = input} />
+                                        onChange={this.handleAppearanceInputChange.bind(this)}
+                                    />
                                     <Slider
                                         style={{width: '100%'}}
                                         defaultValue={this.props.appearanceValue}
@@ -242,7 +293,8 @@ export default class BeerProfileCreate extends React.Component {
                                         placeholder= 'How do you evaluate it at the end?'
                                         defaultValue={this.props.overallText}
                                         rows = {3}
-                                        ref={(input) => this.input = input} />
+                                        onChange={this.handleOverallInputChange.bind(this)}
+                                    />
                                     <Slider
                                         style={{width: '100%'}}
                                         defaultValue={this.props.overallValue}

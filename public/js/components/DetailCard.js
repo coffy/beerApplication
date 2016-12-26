@@ -10,7 +10,7 @@ export default class DetailCard extends React.Component {
     render() {
         return (
             <div style={{margin: '6px'}}>
-                <div id = {'beer-' + this.props.title} className="value-beer-style"> {this.props.value} <sub> &#47;{this.props.maxValue} </sub> </div>
+                <div id = {'beer-' + this.props.title} className="value-beer-style complex-value"> {this.props.value}&#47;<sub>{this.props.maxValue}</sub> </div>
                 <Card>
                     <CardHeader
                         title={this.props.title}

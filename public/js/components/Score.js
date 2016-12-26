@@ -3,6 +3,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import FlatButton from 'material-ui/FlatButton';
 import DetailScore from './DetailScore';
+import BeerProfileCreate from './BeerProfileCreate'
 
 
 
@@ -17,10 +18,9 @@ export default class Score extends React.Component {
 
         var self = this;
 
-        fetch('/score:id',{
-            method: 'POST',
-            mode: 'cors',
-            body: {id: this.props._id}
+        fetch('/score/'+this.props._id,{
+            method: 'POST'
+
         })
             .then(function(response) {
 
@@ -69,6 +69,7 @@ export default class Score extends React.Component {
                 flavor = {this.props.flavor}
                 mouthfeel = {this.props.mouthfeel}
                 appearance = {this.props.appearance}
+                overall = {this.props.overall}
             />
             ,document.getElementById('beer-tasting-detail'));
     };
@@ -83,27 +84,24 @@ export default class Score extends React.Component {
                 <td className="details">
                     <FlatButton
                         primary={true}
-                        onClick={() => {
-                            this.handleDetails.bind(this);
-                            }
+                        onClick={
+                            this.handleDetails.bind(this)
                         }> details
                     </FlatButton>
                 </td>
                 <td className="delete">
                     <FlatButton
                         primary={true}
-                        onClick={() => {
-                            this.handleRemove.bind(this);
-                         }
+                        onClick={
+                            this.handleRemove.bind(this)
                      }> remove
                     </FlatButton>
                 </td>
                 <td className="edit">
                     <FlatButton
                         primary={true}
-                        onClick={() => {
-                            this.handleEdit.bind(this);
-                        }
+                        onClick={
+                            this.handleEdit.bind(this)
                     }> edit
                     </FlatButton>
                 </td>

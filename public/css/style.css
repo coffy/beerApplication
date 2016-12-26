@@ -6,8 +6,14 @@ div.table-beer-margin{
     padding: 5px;
     margin-top: 25px;
 }
+div.table-beer-margin-empty{
 
-h4.beer-profile-detail{
+    font-size: 80px;
+    color: rgba(160, 160, 160, 0.25);
+    margin: 90px;
+}
+
+.beer-profile-detail{
     border-bottom: 2px solid #ddd;
     padding-bottom: 3px;
 }
@@ -16,20 +22,119 @@ h4.beer-profile-detail{
     background-image: url('../img/logo.png') ;
 }
 
+
 .value-beer-style{
+
     float: right;
-    /* z-index: 1900; */
     border-radius: 50%;
-    behavior: url(PIE.htc);
-    width: 36px;
-    height: 36px;
-    padding: 6px;
-    background: #00bcd4;
-    border: 2px solid #fff;
+    width: 50px;
+    height: 50px;
+    padding: 12px;
+    background: #dc5b1d;
+    border: 2px solid #dc5b1d;
     color: #fff;
     text-align: center;
-    font: 20px;
-    /* margin-bottom: 70px; */
+    box-shadow: 1px 2px 2px #d6d6d0;
+
+
+}
+
+.value-beer-style.complex-value{
     margin-top: 10px;
     margin-right: 10px;
+}
+
+.value-beer-style.slider-value{
+    position: absolute;
+    border-radius: 10%;
+    left: 83%;
+    top: -3%;
+    width: 25px;
+    height: 25px;
+    padding: 1px;
+    font-size: 16px;
+}
+
+.beer-form-style-div{
+    margin-top: 30px;
+}
+
+.beer-form-style-div  ul{
+
+    list-style:none;
+    padding:0;
+    margin:0;
+    /*padding: 2px;*/
+
+}
+
+
+.beer-form-style-div li{
+    display: block;
+    padding: 9px;
+    border:1px solid #DDDDDD;
+    margin-bottom: 30px;
+    border-radius: 3px;
+}
+
+.beer-form-style-div > label{
+    display: block;
+    float: left;
+    margin-top: -19px;
+    background: #FFFFFF;
+    height: 14px;
+    width: 100% !important;
+    padding: 2px 5px 2px 5px;
+    color: #B9B9B9;
+    font-size: 14px;
+    overflow: hidden;
+    font-family: Roboto, sans-serif;;
+}
+
+.beer-form-style-div input[type="text"],
+.beer-form-style-div textarea
+{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100% !important;
+    display: block;
+    outline: none;
+    border: none;
+    font-size: 10px;
+    padding: 0;
+    font-family: Roboto, sans-serif;;
+}
+
+.beer-form-style-div input[type="text"]:focus,
+.beer-form-style-div textarea:focus,
+.beer-form-style-div select:focus
+{
+
+
+}
+.beer-form-style-div li > span{
+    background: #F3F3F3;
+    display: block;
+    padding: 3px;
+    margin: 0 -9px -9px -9px;
+    text-align: center;
+    color: #C0C0C0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+}
+
+.beer-form-style-div textarea{
+    resize:none;
+}
+
+.value-beer-style:nth-child(0) {
+
+
+    font-size: 90%;
+}
+
+.value-beer-style:nth-child(2) {
+
+    font-size: 50%;
 }
