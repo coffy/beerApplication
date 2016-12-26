@@ -37,7 +37,6 @@ export default class ScoreList extends React.Component {
     drawScoreList(){
 
        let html = <div className='table-beer-margin'>
-            <div className='col-md-1'></div>
             <div className='col-md-5'>
                 <table className='home table table-hover'>
                     <thead>
@@ -57,7 +56,6 @@ export default class ScoreList extends React.Component {
             </div>
             <div className='col-md-5' id='beer-tasting-detail'>
             </div>
-            <div className='col-md-1'></div>
         </div>;
 
         let htmlEmpty = <div className='table-beer-margin-empty'>
