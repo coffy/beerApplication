@@ -68,6 +68,24 @@ score.statics.createBeerTasting = function(json, callback){
 
 score.statics.deleteBeerTasting = function(id, callback){
 
+    BeerScoreModel.remove({
+        _id: id
+    },function(err, doc){
+        if (!err){
+
+            BeerScoreModel.find(function(err, docs) {
+                if (!err){
+
+                    callback(docs)
+                }else{
+                    callback({}, err);
+                }
+            });
+
+        }else{
+            callback({}, err);
+        }
+    });
 
 };
 
