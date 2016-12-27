@@ -1,6 +1,7 @@
 
 
 import React from 'react';
+import { render } from 'react-dom';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -8,6 +9,7 @@ import MuiTheme from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import TextField from 'material-ui/TextField';
 import Slider from 'material-ui/Slider';
+import ScoreList from './ScoreList';
 
 
 const customContentStyle = {
@@ -23,6 +25,7 @@ export default class BeerProfileCreate extends React.Component {
         super(props);
         this.state = {
             open: false,
+            disable: true,
             overallValue: 0,
             aromaValue: 0,
             flavorValue: 0,
@@ -77,8 +80,19 @@ export default class BeerProfileCreate extends React.Component {
             appearanceValue: this.state.appearanceValue,
             mouthfeelValue: this.state.mouthfeelValue
         };
-        
-        
+
+        if(this.props._id){
+            this.editOp(json);
+        }else{
+            this.addOp(json);
+
+        }
+
+
+    };
+
+    addOp(json){
+
         fetch('/score',{
             method: 'POST',
             mode: 'cors',
@@ -88,18 +102,53 @@ export default class BeerProfileCreate extends React.Component {
 
                 return response.json();
             })
-            .then(function(json){
+            .then(function(lstBeers){
 
-                self.setState({ beerList : json});
+                render(<ScoreList loadedBeers={lstBeers}/>, document.getElementById('react-app'));
             });
+    }
 
-    };
+
+    editOp(json){
+
+        fetch('/score/'+this.props._id,{
+            method: 'UPDATE',
+            body: JSON.stringify(json)
+        })
+            .then(function(response) {
+
+                return response.json();
+            })
+            .then(function(lstBeers){
+
+                render(<ScoreList loadedBeers={lstBeers}/>, document.getElementById('react-app'));
+            });
+    }
 
     handleOpenModal(){
 
         this.setState({open: true});
     }
 
+
+    handleBeerChange(event, value){
+
+        var disable = true;
+        if(value !== ''){
+            disable = false;
+        }
+
+        this.setState({
+            beer: value,
+            disable: disable
+        })
+    }
+    handleBeerTypeChange(event, value){
+        this.setState({type: value})
+    }
+    handleBreweryChange(event, value){
+        this.setState({brewery: value})
+    }
 
     handleOverAllSlider(event, value){
 
@@ -164,12 +213,12 @@ export default class BeerProfileCreate extends React.Component {
                         actions={[
                               <FlatButton
                                   label="Cancel"
-                                  primary={true}
+
                                   onClick={() => {this.handleClose()}}
                               />,
                               <FlatButton
                                   label="Add"
-                                  primary={true}
+                                  disabled = {this.state.disable}
                                   onClick ={() => {this.handleAdd()}}
                               />
                          ]}
@@ -188,6 +237,7 @@ export default class BeerProfileCreate extends React.Component {
                                                 className = 'beer-desc-input'
                                                 placeholder= "Write the beer&rsquo;s name"
                                                 defaultValue={this.props.beer}
+                                                onChange={this.handleBeerChange.bind(this)}
                                                 type='text'
                                             />
                                         </label>
@@ -199,6 +249,7 @@ export default class BeerProfileCreate extends React.Component {
                                                 className = 'beer-desc-input'
                                                 placeholder= 'Write the style'
                                                 defaultValue={this.props.type}
+                                                onChange={this.handleBeerTypeChange.bind(this)}
                                                 type='text'
                                             />
                                         </label>
@@ -210,6 +261,7 @@ export default class BeerProfileCreate extends React.Component {
                                                 placeholder= 'Who made it'
                                                 className = 'beer-desc-input'
                                                 defaultValue={this.props.brewery}
+                                                onChange={this.handleBreweryChange.bind(this)}
                                                 type='text'
                                             />
                                         </label>

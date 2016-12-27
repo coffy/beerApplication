@@ -1,6 +1,7 @@
 
 import React from 'react';
 import Score from './Score';
+import CircularProgress from 'material-ui/CircularProgress'
 import 'whatwg-fetch';
 
 export default class ScoreList extends React.Component {
@@ -8,7 +9,8 @@ export default class ScoreList extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            beerList:[]
+            beerList:[],
+            draw: false
         }
     }
 
@@ -26,9 +28,11 @@ export default class ScoreList extends React.Component {
             })
             .then(function(json){
 
-                self.setState({ beerList : json});
+                self.setState({
+                    beerList : json,
+                    draw: true
+                });
             });
-
 
 
     };
@@ -37,7 +41,7 @@ export default class ScoreList extends React.Component {
     drawScoreList(){
 
        let html = <div className='table-beer-margin'>
-            <div className='col-md-5'>
+            <div className='col-md-6'>
                 <table className='home table table-hover'>
                     <thead>
                     <tr>
@@ -54,13 +58,23 @@ export default class ScoreList extends React.Component {
                     </tbody>
                 </table>
             </div>
-            <div className='col-md-5' id='beer-tasting-detail'>
+            <div className='col-md-6' id='beer-tasting-detail'>
             </div>
         </div>;
 
-        let htmlEmpty = <div className='table-beer-margin-empty'>
-            no beer tasting yet
-        </div>;
+        let htmlEmpty =
+            <div className='table-beer-margin-empty'>
+                no beer tasting yet
+            </div>;
+
+        let htmlLoading =
+            <div className='center-loading'>
+                <CircularProgress />
+            </div>;
+
+        if(!this.state.draw){
+            return htmlLoading;
+        }
 
         if(this.state.beerList.length > 0){
             return html;
@@ -74,6 +88,7 @@ export default class ScoreList extends React.Component {
 
     render(){
 
-      return this.drawScoreList();
+        return (this.drawScoreList());
+
   }
 }

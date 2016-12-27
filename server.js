@@ -57,9 +57,8 @@ app.post('/score', function(req, res){
 
 app.delete('/score/:id', function(req, res){
 
-
-    // render the index template with the embedded
-    BeerScoreModel.deleteBeerTasting(res.body._id,
+    // render the index template with the embedded<
+    BeerScoreModel.deleteBeerTasting(req.params.id,
         function(beers, err){
             if(err){
                 res.send(err);

@@ -2,16 +2,34 @@
 
 
 div.table-beer-margin{
-    margin-left: 50px;
-    padding: 5px;
-    margin-top: 25px;
+     margin-left: 50px;
+     padding: 5px;
+     margin-top: 25px;
 }
+
+
+.table tbody>tr>td{
+    vertical-align: middle  ! important;
+}
+
+
 div.table-beer-margin-empty{
 
     font-size: 80px;
     color: rgba(160, 160, 160, 0.25);
     margin: 90px;
 }
+
+
+div.center-loading{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -50px;
+}
+
+
 
 .beer-profile-detail{
     border-bottom: 2px solid #ddd;
@@ -21,6 +39,8 @@ div.table-beer-margin-empty{
 .logo-beer-icon{
     background-image: url('../img/logo.png') ;
 }
+
+
 
 
 .value-beer-style{

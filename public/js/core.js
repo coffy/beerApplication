@@ -3,11 +3,10 @@ import { render } from 'react-dom';
 import AppBar from 'material-ui/AppBar';
 import MuiTheme from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-//import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import ScoreList from './components/ScoreList';
-//import Avatar from 'material-ui/Avatar';
 import FlatButton from 'material-ui/FlatButton';
-import BeerProfileCreate from './components/BeerProfileCreate'
+import IconButton from 'material-ui/IconButton';
+import BeerProfileCreate from './components/BeerProfileCreate';
 
 
 
@@ -21,18 +20,15 @@ window.onload = () => {
                 <AppBar title="Score my Beer"
                         showMenuIconButton={false}
                         iconElementRight={
-                            <FlatButton
-                                label="Add tasting profile"
-                                onClick = {() => {
+                                <FlatButton
+                                    label="Add tasting profile"
+                                    onClick = {() => {
 
-                                    var beerProfile = render(<BeerProfileCreate/>, document.getElementById('react-create'));
+                                        var beerProfile = render(<BeerProfileCreate/>, document.getElementById('react-create'));
+                                        beerProfile.handleOpenModal();
 
-                                    beerProfile.handleOpenModal();
-
-                                }}
-
-                            />
-
+                                    }}
+                                />
                             }
                 >
                 </AppBar>

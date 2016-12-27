@@ -3,6 +3,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import IconButton from 'material-ui/IconButton';
 import DetailScore from './DetailScore';
+import ScoreList from './ScoreList';
 import BeerProfileCreate from './BeerProfileCreate'
 
 
@@ -19,16 +20,14 @@ export default class Score extends React.Component {
         var self = this;
 
         fetch('/score/'+this.props._id,{
-            method: 'POST'
-
+            method: 'DELETE'
         })
             .then(function(response) {
 
                 return response.json();
             })
-            .then(function(json){
-
-                self.setState({ beerList : json});
+            .then(function(lstBeers){
+               render(<ScoreList loadedBeers={lstBeers}/>, document.getElementById('react-app'));
             });
 
     };
@@ -82,32 +81,32 @@ export default class Score extends React.Component {
                 <td className="beerType">{this.props.type}</td>
                 <td className="brewery">{this.props.brewery}</td>
                 <td className="details">
-                    <IconButon
+                    <IconButton
                         tooltipPosition="bottom-center"
                         tooltip="Check tasting details"
                         onClick={
                             this.handleDetails.bind(this)
                         }> <i className="material-icons">remove_red_eye</i>
-                    </IconButon>
+                    </IconButton>
                 </td>
                 <td className="delete">
-                    <IconButon
+                    <IconButton
                         tooltipPosition="bottom-center"
                         tooltip="Delete tasting"
                         onClick={
                             this.handleRemove.bind(this)
                      }> <i className="material-icons">delete</i>
-                    </IconButon>
+                    </IconButton>
                 </td>
                 <td className="edit">
-                    <IconButon
+                    <IconButton
                         tooltipPosition="bottom-center"
                         tooltip="Edit tasting"
                         onClick={
                             this.handleEdit.bind(this)
                     }>
                         <i className="material-icons">mode_edit</i>
-                    </IconButon>
+                    </IconButton>
                 </td>
             </tr>
         );

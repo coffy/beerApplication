@@ -90,8 +90,25 @@ score.statics.deleteBeerTasting = function(id, callback){
 };
 
 
-score.statics.editBeerTasting = function(id, callback){
+score.statics.editBeerTasting = function(id, json, callback){
+    BeerScoreModel.update({
+        _id: id
+    },{json},function(err, doc){
+        if (!err){
 
+            BeerScoreModel.find(function(err, docs) {
+                if (!err){
+
+                    callback(docs)
+                }else{
+                    callback({}, err);
+                }
+            });
+
+        }else{
+            callback({}, err);
+        }
+    });
 
 };
 
