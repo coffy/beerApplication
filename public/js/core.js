@@ -22,6 +22,8 @@ window.onload = () => {
                         iconElementRight={
                                 <FlatButton
                                     label="Add tasting profile"
+
+                                    icon={<i className="material-icons">add_box</i>}
                                     onClick = {() => {
 
                                         var beerProfile = render(<BeerProfileCreate/>, document.getElementById('react-create'));

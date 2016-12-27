@@ -52,10 +52,22 @@ app.post('/score', function(req, res){
   );
 });
 
+app.put('/score', function(req, res){
+
+    console.log(req);
+    // render the index template with the embedded
+    BeerScoreModel.createBeerTasting(res.body,
+        function(beers, err){
+            if(err){
+                res.send(err);
+            }
+            res.send(beers);
+        }
+    );
+})
 
 
-
-app.delete('/score/:id', function(req, res){
+app.delete('/score/:_id', function(req, res){
 
     // render the index template with the embedded<
     BeerScoreModel.deleteBeerTasting(req.params.id,

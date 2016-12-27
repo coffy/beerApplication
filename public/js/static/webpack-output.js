@@ -102,6 +102,12 @@
 	                showMenuIconButton: false,
 	                iconElementRight: _react2.default.createElement(_FlatButton2.default, {
 	                    label: 'Add tasting profile',
+
+	                    icon: _react2.default.createElement(
+	                        'i',
+	                        { className: 'material-icons' },
+	                        'add_box'
+	                    ),
 	                    onClick: function onClick() {
 
 	                        var beerProfile = (0, _reactDom.render)(_react2.default.createElement(_BeerProfileCreate2.default, null), document.getElementById('react-create'));
@@ -35149,7 +35155,9 @@
 	            var self = this;
 
 	            fetch('/score/' + this.props._id, {
-	                method: 'DELETE'
+	                method: 'delete',
+	                headers: { 'Content-Type': 'application/json' },
+	                body: JSON.stringify({ _id: this.props._id })
 	            }).then(function (response) {
 
 	                return response.json();
@@ -37055,8 +37063,9 @@
 	        value: function editOp(json) {
 
 	            fetch('/score/' + this.props._id, {
-	                method: 'UPDATE',
-	                body: JSON.stringify(json)
+	                method: 'put',
+	                headers: { 'Content-Type': 'application/json' },
+	                body: JSON.stringify(Object.assign(json, { _id: this.props._id }))
 	            }).then(function (response) {
 
 	                return response.json();

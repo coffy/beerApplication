@@ -112,8 +112,9 @@ export default class BeerProfileCreate extends React.Component {
     editOp(json){
 
         fetch('/score/'+this.props._id,{
-            method: 'UPDATE',
-            body: JSON.stringify(json)
+            method: 'put',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(Object.assign(json, {_id: this.props._id}))
         })
             .then(function(response) {
 

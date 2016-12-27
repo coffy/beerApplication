@@ -91,7 +91,7 @@ score.statics.deleteBeerTasting = function(id, callback){
 
 
 score.statics.editBeerTasting = function(id, json, callback){
-    BeerScoreModel.update({
+    BeerScoreModel.findOneAndUpdate({
         _id: id
     },{json},function(err, doc){
         if (!err){

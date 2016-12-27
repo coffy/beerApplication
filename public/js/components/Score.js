@@ -20,7 +20,11 @@ export default class Score extends React.Component {
         var self = this;
 
         fetch('/score/'+this.props._id,{
-            method: 'DELETE'
+            method: 'delete',
+            headers: {'Content-Type': 'application/json'},
+            body:JSON.stringify(
+                {_id:this.props._id}
+            )
         })
             .then(function(response) {
 
