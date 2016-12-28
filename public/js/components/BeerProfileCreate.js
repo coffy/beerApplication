@@ -40,18 +40,25 @@ export default class BeerProfileCreate extends React.Component {
 
         var self = this;
 
-        if(this.props.id){
+        if(this.props._id){
 
             this.setState({
+                disable: false,
+                beer: this.props.beer,
+                type: this.props.type,
+                brewery: this.props.brewery,
                 overallValue: this.props.overallValue,
                 aromaValue: this.props.aromaValue,
                 flavorValue: this.props.flavorValue,
                 appearanceValue: this.props.appearanceValue,
-                mouthfeelValue: this.props.mouthfeelValue
+                mouthfeelValue: this.props.mouthfeelValue,
+                overallText: this.props.overallText,
+                aromaText: this.props.aromaText,
+                flavorText: this.props.flavorText,
+                appearanceText: this.props.appearanceText,
+                mouthfeelText: this.props.mouthfeelText
             })
         }
-
-
     };
 
 
@@ -69,16 +76,28 @@ export default class BeerProfileCreate extends React.Component {
             beer: this.state.beer,
             type: this.state.type,
             brewery: this.state.brewery,
-            overallText: this.state.overallText,
-            aromaText: this.state.aromaText,
-            flavorText: this.state.flavorText,
-            appearanceText: this.state.appearanceText,
-            mouthfeelText: this.state.mouthfeelText,
-            overallValue: this.state.overallValue,
-            aromaValue: this.state.aromaValue,
-            flavorValue: this.state.flavorValue,
-            appearanceValue: this.state.appearanceValue,
-            mouthfeelValue: this.state.mouthfeelValue
+            overall: {
+                value:this.state.overallValue,
+                text:(this.state.overallText? this.state.overallText : '')
+            },
+
+            flavor: {
+                value:this.state.flavorValue,
+                text:(this.state.flavorText? this.state.flavorText : '')
+            },
+
+            aroma: {
+                value:this.state.aromaValue,
+                text:(this.state.aromaText? this.state.aromaText : '')
+            },
+            appearance: {
+                value:this.state.appearanceValue,
+                text:(this.state.appearanceText? this.state.appearanceText : '')
+            },
+            mouthfeel: {
+                value:this.state.mouthfeelValue,
+                text:(this.state.mouthfeelText? this.state.mouthfeelText : '')
+            }
         };
 
         if(this.props._id){
@@ -92,10 +111,11 @@ export default class BeerProfileCreate extends React.Component {
     };
 
     addOp(json){
+        var self = this;
 
         fetch('/score',{
-            method: 'POST',
-            mode: 'cors',
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(json)
         })
             .then(function(response) {
@@ -104,17 +124,21 @@ export default class BeerProfileCreate extends React.Component {
             })
             .then(function(lstBeers){
 
-                render(<ScoreList loadedBeers={lstBeers}/>, document.getElementById('react-app'));
+                self.props.update(lstBeers);
+
+                self.setState({open:false});
+
             });
     }
 
 
     editOp(json){
+        var self = this;
 
-        fetch('/score/'+this.props._id,{
+        fetch('/score/'+self.props._id,{
             method: 'put',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(Object.assign(json, {_id: this.props._id}))
+            body: JSON.stringify(json)
         })
             .then(function(response) {
 
@@ -122,7 +146,11 @@ export default class BeerProfileCreate extends React.Component {
             })
             .then(function(lstBeers){
 
-                render(<ScoreList loadedBeers={lstBeers}/>, document.getElementById('react-app'));
+                self.props.update(lstBeers);
+
+                self.setState({open:false});
+
+
             });
     }
 
@@ -135,20 +163,20 @@ export default class BeerProfileCreate extends React.Component {
     handleBeerChange(event, value){
 
         var disable = true;
-        if(value !== ''){
+        if(event.target.value !== ''){
             disable = false;
         }
 
         this.setState({
-            beer: value,
+            beer: event.target.value,
             disable: disable
         })
     }
     handleBeerTypeChange(event, value){
-        this.setState({type: value})
+        this.setState({type: event.target.value})
     }
     handleBreweryChange(event, value){
-        this.setState({brewery: value})
+        this.setState({brewery: event.target.value})
     }
 
     handleOverAllSlider(event, value){
@@ -178,29 +206,29 @@ export default class BeerProfileCreate extends React.Component {
 
 
 
-    handleMouthfeelInputChange(event, value){
+    handleMouthfeelInputChange(event){
 
-        this.setState({mouthfeelText: value});
+        this.setState({mouthfeelText: event.target.value});
     }
 
-    handleFlavorInputChange(event, value){
+    handleFlavorInputChange(event){
 
-        this.setState({flavorText: value});
+        this.setState({flavorText: event.target.value});
     }
 
-    handleAromaInputChange(event, value){
+    handleAromaInputChange(event){
 
-        this.setState({aromaText: value});
+        this.setState({aromaText: event.target.value});
     }
 
-    handleAppearanceInputChange(event, value){
+    handleAppearanceInputChange(event){
 
-        this.setState({appearanceText: value});
+        this.setState({appearanceText: event.target.value});
     }
 
-    handleOverallInputChange(event, value){
+    handleOverallInputChange(event){
 
-        this.setState({overallText: value});
+        this.setState({overallText: event.target.value});
     }
 
 

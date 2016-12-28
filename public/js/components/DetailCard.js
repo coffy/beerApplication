@@ -2,7 +2,6 @@
 import React from 'react';
 import {Card, CardHeader, CardText} from 'material-ui/Card';
 
-//beer-tasting-detail
 
 export default class DetailCard extends React.Component {
 

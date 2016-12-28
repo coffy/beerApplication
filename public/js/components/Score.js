@@ -14,16 +14,36 @@ import BeerProfileCreate from './BeerProfileCreate'
 
 export default class Score extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            open: false,
+            disable: true,
+            overallValue: 0,
+            aromaValue: 0,
+            flavorValue: 0,
+            appearanceValue: 0,
+            mouthfeelValue: 0,
+            overallText: '',
+            aromaText: '',
+            flavorText: '',
+            appearanceText: '',
+            mouthfeelText: ''
+        };
+
+    };
+
+
 
     handleRemove(){
 
         var self = this;
 
-        fetch('/score/'+this.props._id,{
+        fetch('/score/'+self.props._id,{
             method: 'delete',
             headers: {'Content-Type': 'application/json'},
             body:JSON.stringify(
-                {_id:this.props._id}
+                {_id:self.props._id}
             )
         })
             .then(function(response) {
@@ -31,20 +51,26 @@ export default class Score extends React.Component {
                 return response.json();
             })
             .then(function(lstBeers){
-               render(<ScoreList loadedBeers={lstBeers}/>, document.getElementById('react-app'));
+
+                self.props.update(lstBeers);
             });
 
     };
 
 
+
+
     handleEdit(){
+
+        var self = this;
 
         var beerProfile = render(
             <BeerProfileCreate
-                id ={this.props._id}
+                update = {(lstBeers) => {self.props.update(lstBeers)}}
+                _id ={this.props._id}
                 beer = {this.props.beer}
                 type = {this.props.type}
-                brewery =  {this.props.type}
+                brewery =  {this.props.brewery}
                 aromaText = {this.props.aroma.text}
                 flavorText = {this.props.flavor.text}
                 mouthfeelText = {this.props.mouthfeel.text}

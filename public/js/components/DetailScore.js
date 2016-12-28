@@ -8,8 +8,6 @@ import DetailCard from './DetailCard';
 
 export default class DetailScore extends React.Component {
 
-
-
     render() {
         return (
             <MuiTheme>

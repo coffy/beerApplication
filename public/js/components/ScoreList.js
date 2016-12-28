@@ -9,7 +9,7 @@ export default class ScoreList extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            beerList:[],
+            loadedBeers:[],
             draw: false
         }
     }
@@ -17,6 +17,7 @@ export default class ScoreList extends React.Component {
     componentWillMount(){
 
         var self = this;
+
 
         fetch('/scores',{
                 method: 'GET',
@@ -29,14 +30,17 @@ export default class ScoreList extends React.Component {
             .then(function(json){
 
                 self.setState({
-                    beerList : json,
+                    loadedBeers : json,
                     draw: true
                 });
             });
-
-
     };
 
+
+    reloadList(lst){
+
+        this.setState({loadedBeers: lst});
+    }
 
     drawScoreList(){
 
@@ -54,7 +58,7 @@ export default class ScoreList extends React.Component {
                     </tr>
                     </thead>
                     <tbody>
-                    {this.state.beerList.map(lstData =>  <Score key={lstData._id} {...lstData} />)}
+                    {this.state.loadedBeers.map(lstData =>  <Score update = {(lst) => { this.reloadList(lst)}}key={lstData._id} {...lstData} />)}
                     </tbody>
                 </table>
             </div>
@@ -76,7 +80,7 @@ export default class ScoreList extends React.Component {
             return htmlLoading;
         }
 
-        if(this.state.beerList.length > 0){
+        if(this.state.loadedBeers.length > 0){
             return html;
         }else{
             return htmlEmpty;

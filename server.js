@@ -1,5 +1,6 @@
 var path  = require( 'path');
 var Express  = require( 'express');
+var bodyParser = require('body-parser');
 var handlebars  = require( 'express-handlebars');
 var mongoose = require('mongoose');
 var BeerScoreModel = require('./mongoModels/BeerScoreModel');
@@ -16,6 +17,7 @@ mongoose.connect('mongodb://gmfel:mongogil@ds141428.mlab.com:41428/beerscoring')
 var tmplHandlebars = handlebars.create({});
 app.engine('handlebars', tmplHandlebars.engine);
 app.set('view engine', 'handlebars');
+app.use(bodyParser.json());
 
 app.use(Express.static(path.join(__dirname, 'public')));
 
@@ -40,9 +42,8 @@ app.get('/scores', function(req, res){
   // create tasting beer record
 app.post('/score', function(req, res){
 
-  console.log(req);
   // render the index template with the embedded
-  BeerScoreModel.createBeerTasting(res.body,
+  BeerScoreModel.createBeerTasting(req.body,
       function(beers, err){
         if(err){
           res.send(err);
@@ -52,11 +53,10 @@ app.post('/score', function(req, res){
   );
 });
 
-app.put('/score', function(req, res){
+app.put('/score/:_id', function(req, res){
 
-    console.log(req);
     // render the index template with the embedded
-    BeerScoreModel.createBeerTasting(res.body,
+    BeerScoreModel.editBeerTasting(req.params._id, req.body,
         function(beers, err){
             if(err){
                 res.send(err);
@@ -64,13 +64,13 @@ app.put('/score', function(req, res){
             res.send(beers);
         }
     );
-})
+});
 
 
 app.delete('/score/:_id', function(req, res){
 
-    // render the index template with the embedded<
-    BeerScoreModel.deleteBeerTasting(req.params.id,
+
+    BeerScoreModel.deleteBeerTasting(req.params._id,
         function(beers, err){
             if(err){
                 res.send(err);
