@@ -110,33 +110,35 @@ export default class Score extends React.Component {
                 <td className="beer">{this.props.beer}</td>
                 <td className="beerType">{this.props.type}</td>
                 <td className="brewery">{this.props.brewery}</td>
-                <td className="details">
-                    <IconButton
-                        tooltipPosition="bottom-center"
-                        tooltip="Check tasting details"
-                        onClick={
-                            this.handleDetails.bind(this)
-                        }> <i className="material-icons">remove_red_eye</i>
-                    </IconButton>
-                </td>
-                <td className="delete">
-                    <IconButton
-                        tooltipPosition="bottom-center"
-                        tooltip="Delete tasting"
-                        onClick={
-                            this.handleRemove.bind(this)
-                     }> <i className="material-icons">delete</i>
-                    </IconButton>
-                </td>
-                <td className="edit">
-                    <IconButton
-                        tooltipPosition="bottom-center"
-                        tooltip="Edit tasting"
-                        onClick={
-                            this.handleEdit.bind(this)
-                    }>
-                        <i className="material-icons">mode_edit</i>
-                    </IconButton>
+                <td className="">
+                    <div className="col-sm-4 details">
+                        <IconButton
+                            tooltipPosition="bottom-center"
+                            tooltip="Check tasting details"
+                            onClick={
+                                this.handleDetails.bind(this)
+                            }> <i className="material-icons">remove_red_eye</i>
+                        </IconButton>
+                    </div>
+                    <div className="col-sm-4 delete">
+                        <IconButton
+                            tooltipPosition="bottom-center"
+                            tooltip="Delete tasting"
+                            onClick={
+                                this.handleRemove.bind(this)
+                         }> <i className="material-icons">delete</i>
+                        </IconButton>
+                    </div>
+                    <div className="col-sm-4 edit">
+                        <IconButton
+                            tooltipPosition="bottom-center"
+                            tooltip="Edit tasting"
+                            onClick={
+                                this.handleEdit.bind(this)
+                        }>
+                            <i className="material-icons">mode_edit</i>
+                        </IconButton>
+                    </div>
                 </td>
             </tr>
         );

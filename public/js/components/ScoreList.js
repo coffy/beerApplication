@@ -52,9 +52,7 @@ export default class ScoreList extends React.Component {
                         <th> Beer </th>
                         <th> Type </th>
                         <th> Brewery </th>
-                        <th>  </th>
-                        <th>  </th>
-                        <th>  </th>
+                        <th> ... </th>
                     </tr>
                     </thead>
                     <tbody>

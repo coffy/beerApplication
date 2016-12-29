@@ -14,9 +14,9 @@ mongoose.connect('mongodb://gmfel:mongogil@ds141428.mlab.com:41428/beerscoring')
 
 
 // templating with handlebars engine;
-var tmplHandlebars = handlebars.create({});
-app.engine('handlebars', tmplHandlebars.engine);
-app.set('view engine', 'handlebars');
+var tmplHandlebars = handlebars.create({extname: '.html'});
+app.engine('html', tmplHandlebars.engine);
+app.set('view engine', 'html');
 app.use(bodyParser.json());
 
 app.use(Express.static(path.join(__dirname, 'public')));
@@ -87,5 +87,5 @@ const env = process.env.NODE_ENV || 'production';
 
 app.listen( port, function() {
 
-  console.log('Server running on http://localhost: ' + port + '-' + env);
+  console.log('Server running on http://localhost:' + port + ' - ' + env);
 });

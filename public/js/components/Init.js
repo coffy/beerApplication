@@ -1,15 +1,13 @@
 
 import React from 'react';
-import Score from './Score';
-import 'whatwg-fetch';
-import AppBar from 'material-ui/AppBar';
-import MuiTheme from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import ScoreList from './ScoreList';
-import FlatButton from 'material-ui/FlatButton';
-import IconButton from 'material-ui/IconButton';
-import BeerProfileCreate from './BeerProfileCreate';
 import { render } from 'react-dom';
+import 'whatwg-fetch';
+import AppBar from      'material-ui/AppBar';
+import MuiTheme from    'material-ui/styles/MuiThemeProvider';
+import FlatButton from  'material-ui/FlatButton';
+import ScoreList from   './ScoreList';
+import Score from './Score';
+import BeerProfileCreate from './BeerProfileCreate';
 
 export default class Init extends React.Component {
 
@@ -31,13 +29,12 @@ export default class Init extends React.Component {
 
         return (<MuiTheme>
             <div>
-                <AppBar title="Score my Beer"
+                <AppBar className="app-bar" title="Score my Beer"
                         showMenuIconButton={false}
                         iconElementRight={
                                 <FlatButton
-                                    label="Add tasting profile"
-
                                     icon={<i className="material-icons">add_box</i>}
+                                    children={<span className="icon-label" >Add tasting</span>}
                                     onClick = {() => {
 
                                         var beerProfile = render(<BeerProfileCreate update={(lstBeer) => this.reloadList(lstBeer)}/>, document.getElementById('react-create'));
