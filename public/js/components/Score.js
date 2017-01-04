@@ -82,7 +82,7 @@ export default class Score extends React.Component {
                 appearanceValue = {this.props.appearance.value}
                 overallValue = {this.props.overall.value}
             />
-            ,document.getElementById('beer-tasting-detail'));
+            ,document.getElementById('react-create'));
 
         beerProfile.handleOpenModal();
 

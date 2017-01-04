@@ -64,11 +64,17 @@
 
 	var _Init2 = _interopRequireDefault(_Init);
 
+	var _ScoreList = __webpack_require__(396);
+
+	var _ScoreList2 = _interopRequireDefault(_ScoreList);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	window.onload = function () {
 
 	    (0, _reactDom.render)(_react2.default.createElement(_Init2.default, null), document.getElementById('react-app'));
+
+	    (0, _reactDom.render)(_react2.default.createElement(_ScoreList2.default, null), document.getElementById('score-list-component'));
 	};
 
 /***/ },
@@ -21685,9 +21691,8 @@
 	    _createClass(Init, [{
 	        key: 'reloadList',
 	        value: function reloadList(lstBeer) {
-
-	            this.setState({ beerList: lstBeer });
-	            this.forceUpdate();
+	            var scoreList = (0, _reactDom.render)(_react2.default.createElement(_ScoreList2.default, null), document.getElementById('score-list-component'));
+	            scoreList.reloadList(lstBeer);
 	        }
 	    }, {
 	        key: 'render',
@@ -21704,26 +21709,19 @@
 	                        showMenuIconButton: false,
 	                        iconElementRight: _react2.default.createElement(_FlatButton2.default, {
 	                            label: 'Add tasting profile',
-
 	                            icon: _react2.default.createElement(
 	                                'i',
 	                                { className: 'material-icons' },
 	                                'add_box'
 	                            ),
 	                            onClick: function onClick() {
-
 	                                var beerProfile = (0, _reactDom.render)(_react2.default.createElement(_BeerProfileCreate2.default, { update: function update(lstBeer) {
 	                                        return _this2.reloadList(lstBeer);
 	                                    } }), document.getElementById('react-create'));
 	                                beerProfile.handleOpenModal();
 	                            }
 	                        })
-	                    }),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { id: 'score-list-component' },
-	                        _react2.default.createElement(_ScoreList2.default, { loadedBeers: this.state.beerList })
-	                    )
+	                    })
 	                )
 	            );
 	        }
@@ -21833,7 +21831,7 @@
 	                _id: this.props._id,
 	                beer: this.props.beer,
 	                type: this.props.type,
-	                brewery: this.props.type,
+	                brewery: this.props.brewery,
 	                aromaText: this.props.aroma.text,
 	                flavorText: this.props.flavor.text,
 	                mouthfeelText: this.props.mouthfeel.text,
@@ -21844,7 +21842,7 @@
 	                mouthfeelValue: this.props.mouthfeel.value,
 	                appearanceValue: this.props.appearance.value,
 	                overallValue: this.props.overall.value
-	            }), document.getElementById('beer-tasting-detail'));
+	            }), document.getElementById('react-create'));
 
 	            beerProfile.handleOpenModal();
 	        }
@@ -36432,6 +36430,10 @@
 
 	var _Score2 = _interopRequireDefault(_Score);
 
+	var _MuiThemeProvider = __webpack_require__(317);
+
+	var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
+
 	var _CircularProgress = __webpack_require__(397);
 
 	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
@@ -36493,64 +36495,68 @@
 	            var _this2 = this;
 
 	            var html = _react2.default.createElement(
-	                'div',
-	                { className: 'table-beer-margin' },
+	                _MuiThemeProvider2.default,
+	                null,
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'col-md-6' },
+	                    { className: 'table-beer-margin' },
 	                    _react2.default.createElement(
-	                        'table',
-	                        { className: 'home table table-hover' },
+	                        'div',
+	                        { className: 'col-md-6' },
 	                        _react2.default.createElement(
-	                            'thead',
-	                            null,
+	                            'table',
+	                            { className: 'home table table-hover' },
 	                            _react2.default.createElement(
-	                                'tr',
+	                                'thead',
 	                                null,
 	                                _react2.default.createElement(
-	                                    'th',
+	                                    'tr',
 	                                    null,
-	                                    ' Beer '
-	                                ),
-	                                _react2.default.createElement(
-	                                    'th',
-	                                    null,
-	                                    ' Type '
-	                                ),
-	                                _react2.default.createElement(
-	                                    'th',
-	                                    null,
-	                                    ' Brewery '
-	                                ),
-	                                _react2.default.createElement(
-	                                    'th',
-	                                    null,
-	                                    '  '
-	                                ),
-	                                _react2.default.createElement(
-	                                    'th',
-	                                    null,
-	                                    '  '
-	                                ),
-	                                _react2.default.createElement(
-	                                    'th',
-	                                    null,
-	                                    '  '
+	                                    _react2.default.createElement(
+	                                        'th',
+	                                        null,
+	                                        ' Beer '
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'th',
+	                                        null,
+	                                        ' Type '
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'th',
+	                                        null,
+	                                        ' Brewery '
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'th',
+	                                        null,
+	                                        '  '
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'th',
+	                                        null,
+	                                        '  '
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'th',
+	                                        null,
+	                                        '  '
+	                                    )
 	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                'tbody',
+	                                null,
+	                                this.state.loadedBeers.map(function (lstData) {
+	                                    return _react2.default.createElement(_Score2.default, _extends({ update: function update(lst) {
+	                                            _this2.reloadList(lst);
+	                                        }, key: lstData._id }, lstData));
+	                                })
 	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            'tbody',
-	                            null,
-	                            this.state.loadedBeers.map(function (lstData) {
-	                                return _react2.default.createElement(_Score2.default, _extends({ update: function update(lst) {
-	                                        _this2.reloadList(lst);
-	                                    }, key: lstData._id }, lstData));
-	                            })
 	                        )
-	                    )
-	                ),
-	                _react2.default.createElement('div', { className: 'col-md-6', id: 'beer-tasting-detail' })
+	                    ),
+	                    _react2.default.createElement('div', { className: 'col-md-6', id: 'beer-tasting-detail' })
+	                )
 	            );
 
 	            var htmlEmpty = _react2.default.createElement(
@@ -36560,9 +36566,13 @@
 	            );
 
 	            var htmlLoading = _react2.default.createElement(
-	                'div',
-	                { className: 'center-loading' },
-	                _react2.default.createElement(_CircularProgress2.default, null)
+	                _MuiThemeProvider2.default,
+	                null,
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'center-loading' },
+	                    _react2.default.createElement(_CircularProgress2.default, null)
+	                )
 	            );
 
 	            if (!this.state.draw) {
@@ -37427,6 +37437,9 @@
 
 	                this.setState({
 	                    disable: false,
+	                    beer: this.props.beer,
+	                    type: this.props.type,
+	                    brewery: this.props.brewery,
 	                    overallValue: this.props.overallValue,
 	                    aromaValue: this.props.aromaValue,
 	                    flavorValue: this.props.flavorValue,
@@ -37499,6 +37512,7 @@
 
 	                return response.json();
 	            }).then(function (lstBeers) {
+
 	                self.props.update(lstBeers);
 
 	                self.setState({ open: false });
