@@ -10,7 +10,13 @@ var BeerScoreModel = require('./mongoModels/BeerScoreModel');
 // initialize the server
 const app = new Express();
 
-mongoose.connect('mongodb://gmfel:mongogil@ds141428.mlab.com:41428/beerscoring');
+const db_user = process.env.DB_USER;
+const db_key  = process.env.DB_KEY;
+const db_name = process.env.DB_NAME;
+
+const db_url = 'mongodb://'+db_user + ':' + db_key +'@ds141428.mlab.com:41428/'+ db_name;
+
+mongoose.connect(db_url);
 
 
 // templating with handlebars engine;
