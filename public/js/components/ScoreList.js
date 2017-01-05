@@ -1,6 +1,7 @@
 
 import React from 'react';
 import Score from './Score';
+import MuiTheme from 'material-ui/styles/MuiThemeProvider';
 import CircularProgress from 'material-ui/CircularProgress'
 import 'whatwg-fetch';
 
@@ -44,6 +45,7 @@ export default class ScoreList extends React.Component {
 
     drawScoreList(){
 
+<<<<<<< HEAD
        let html = <div className='table-beer-margin'>
             <div className='col-md-6'>
                 <table className='home table table-hover'>
@@ -63,6 +65,32 @@ export default class ScoreList extends React.Component {
             <div className='col-md-6' id='beer-tasting-detail'>
             </div>
         </div>;
+=======
+        let html =
+            <MuiTheme>
+                <div className='table-beer-margin'>
+                    <div className='col-md-6'>
+                        <table className='home table table-hover'>
+                            <thead>
+                            <tr>
+                                <th> Beer </th>
+                                <th> Type </th>
+                                <th> Brewery </th>
+                                <th>  </th>
+                                <th>  </th>
+                                <th>  </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {this.state.loadedBeers.map(lstData =>  <Score update = {(lst) => { this.reloadList(lst)}}key={lstData._id} {...lstData} />)}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className='col-md-6' id='beer-tasting-detail'>
+                    </div>
+                </div>
+            </MuiTheme>;
+>>>>>>> Gilfell87/master
 
         let htmlEmpty =
             <div className='table-beer-margin-empty'>
@@ -70,9 +98,11 @@ export default class ScoreList extends React.Component {
             </div>;
 
         let htmlLoading =
-            <div className='center-loading'>
-                <CircularProgress />
-            </div>;
+            <MuiTheme>
+                <div className='center-loading'>
+                    <CircularProgress />
+                </div>
+            </MuiTheme>;
 
         if(!this.state.draw){
             return htmlLoading;

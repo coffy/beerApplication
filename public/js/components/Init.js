@@ -19,9 +19,8 @@ export default class Init extends React.Component {
     }
 
     reloadList(lstBeer){
-
-        this.setState({beerList:lstBeer});
-        this.forceUpdate();
+        var scoreList = render(<ScoreList/>, document.getElementById('score-list-component'));
+        scoreList.reloadList(lstBeer);
     }
 
 
@@ -33,22 +32,20 @@ export default class Init extends React.Component {
                         showMenuIconButton={false}
                         iconElementRight={
                                 <FlatButton
+<<<<<<< HEAD
+=======
+                                    label="Add tasting profile"
+>>>>>>> Gilfell87/master
                                     icon={<i className="material-icons">add_box</i>}
                                     children={<span className="icon-label" >Add tasting</span>}
                                     onClick = {() => {
-
                                         var beerProfile = render(<BeerProfileCreate update={(lstBeer) => this.reloadList(lstBeer)}/>, document.getElementById('react-create'));
                                         beerProfile.handleOpenModal();
-
                                     }}
                                 />
                             }
                 >
                 </AppBar>
-                <div id="score-list-component">
-                    <ScoreList loadedBeers={this.state.beerList}/>
-                </div>
-
             </div>
         </MuiTheme>);
 
